@@ -12,11 +12,14 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { useLocation, Link } from "react-router-dom";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
+  const location = useLocation();
+  // console.log(location);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -110,14 +113,45 @@ const Header = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map(page => (
+            {/* {pages.map(page => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}>
                 {page}
               </Button>
-            ))}
+            ))} */}
+
+            <Link to="/pokemons-2">
+              <Button
+                sx={{ m: 1 }}
+                variant="contained"
+                color={
+                  location.pathname === "/pokemons-2" ? "warning" : "primary"
+                }>
+                Pokemons
+              </Button>
+            </Link>
+            <Link to="/add">
+              <Button
+                sx={{ m: 1 }}
+                variant="contained"
+                color={location.pathname === "/add" ? "success" : "primary"}>
+                Add
+              </Button>
+            </Link>
+            <Link to="/rick-and-morty">
+              <Button
+                sx={{ m: 1 }}
+                variant="contained"
+                color={
+                  location.pathname === "/rick-and-morty"
+                    ? "success"
+                    : "primary"
+                }>
+                Rick and Morty
+              </Button>
+            </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
